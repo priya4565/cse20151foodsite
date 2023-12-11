@@ -218,17 +218,12 @@ include 'includes/connect.php';
 					echo '<td><div class="input-field col s12 "><label for="'.$row["id"].'_price">Price</label>';
 					echo '<input value="'.$row["price"].'" id="'.$row["id"].'_price" name="'.$row['id'].'_price" type="text" data-error=".errorTxt'.$row["id"].'"><div class="errorTxt'.$row["id"].'"></div></td>';                   
 					echo '<td>';
-					if($row['deleted'] == 0){
-						$text1 = 'selected';
-						$text2 = '';
-					}
-					else{
-						$text1 = '';
-						$text2 = 'selected';						
-					}
-					echo '
-					<img src="data:image/jpeg;base64,'.base64_encode($row['image']).'" id="'.$row["id"].'_image" name="'.$row['id'].'_image" type="file" data-error=".errorTxt'.$row["id"].'"><div class="errorTxt'.$row["id"].'"></div>
-                    </td></tr>';
+            if (!empty($row['image'])) {
+                echo '<img src="' . $row['image'] . '" alt="' . $row['name'] . '" style="max-width: 100px; max-height: 100px;">';
+            } else {
+                echo 'Image not available';
+            }
+            echo '</td></tr>';
 				}
 				?>
                     </tbody>
@@ -265,9 +260,13 @@ include 'includes/connect.php';
 					echo '<input id="price" name="price" type="text" data-error=".errorTxt02"><div class="errorTxt02"></div></td>';
 
 					echo '<td><div class="input-field col s12 ">';
-					echo '
-					<input type="file" id="image" name="image" data-error=".errorTxt01"><div class="errorTxt01"></div></td>';                   
-					echo '<td></tr>';
+					echo '<td>';
+            if (!empty($row['image'])) {
+                echo '<img src="' . $row['image'] . '" alt="' . $row['name'] . '" style="max-width: 100px; max-height: 100px;">';
+            } else {
+                echo 'Image not available';
+            }
+            echo '</td></tr>';
 				?>
                     </tbody>
 </table>
